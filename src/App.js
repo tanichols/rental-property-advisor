@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
-import store from './state'
 
 class App extends Component {
   render() {
-    store.dispatch({
-      type: 'nonesense'
-    })
     return (
       <div className="App">
         <header className="App-header">
