@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import store from './state'
+import { setStreet } from './state/search'
 
 class App extends Component {
   render() {
+    store.dispatch(setStreet('1315 SW 2nd Ave'))
     return (
       <div className="App">
         <header className="App-header">

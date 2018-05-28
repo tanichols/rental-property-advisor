@@ -7,8 +7,7 @@ const reducer = combineReducers({
 })
 
 const middleware = compose(
-  applyMiddleware(promiseMiddleware()),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  applyMiddleware(promiseMiddleware())
 )
 
 const store = createStore(
