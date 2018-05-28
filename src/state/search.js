@@ -1,4 +1,4 @@
-import * as api from '../api'
+import axios from 'axios'
 
 // Actions
 export const SET_STREET = 'SET_STREET_ADDRESS'
@@ -103,7 +103,7 @@ export const setState = (state) => {
 export const fetchFromZillow = (street, city, state) => {
   return {
     type: FETCH_FROM_ZILLOW,
-    payload: api.getZillowDetails(street, city, state)
+    payload: axios.get(`http://www.zillow.com/webservice/GetSearchResults?zws-id=12345&address=${street}&citystatezip=${city} ${state}`)
   }
 }
 
