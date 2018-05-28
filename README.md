@@ -1,1 +1,3 @@
+[![Build Status](https://travis-ci.org/tanichols/rental-property-advisor.svg?branch=master)](https://travis-ci.org/tanichols/rental-property-advisor) [![Sonar](https://sonarcloud.io/api/project_badges/measure?project=rental-property-advisor%3Amaster&metric=alert_status)](https://sonarcloud.io/dashboard?id=rental-property-advisor%3Amaster) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=rental-property-advisor%3Amaster&metric=coverage)](https://sonarcloud.io/component_measures?id=rental-property-advisor%3Amaster&metric=coverage)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
