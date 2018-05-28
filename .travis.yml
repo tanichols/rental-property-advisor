@@ -11,5 +11,5 @@ cache:
   - node_modules
 script:
   - npm run cover
-  - npm un build
+  - npm run build
   - sonar-scanner
