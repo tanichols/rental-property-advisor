@@ -13,3 +13,7 @@ script:
   - npm run cover
   - npm run build
   - sonar-scanner
+deploy:
+  provider: heroku
+  api_key: $heroku_token
+  app: rental-property-advisor
