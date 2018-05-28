@@ -1,0 +1,15 @@
+dist: trusty
+language: node_js
+node_js:
+  - "stable"
+addons:
+  sonarcloud:
+    organization: "tanichols-github"
+    token: $sonar_token
+cache:
+  directories:
+  - node_modules
+script:
+  - npm run cover
+  - npm un build
+  - sonar-scanner

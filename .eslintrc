@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "standard",
+    "standard-react"
+  ],
+  "env": {
+    "jest": true
+  },
+  "rules": {
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ]
+  },
+  "globals": {
+    "fetch": true
+  }
+}
