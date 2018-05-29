@@ -1,5 +1,4 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-import logger from 'redux-logger'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import promiseMiddleware from 'redux-promise-middleware'
 import search from './search'
 
@@ -7,11 +6,8 @@ const reducer = combineReducers({
   search
 })
 
-const middleware = compose(
-  applyMiddleware(
-    promiseMiddleware(),
-    logger
-  )
+const middleware = applyMiddleware(
+  promiseMiddleware()
 )
 
 const store = createStore(
