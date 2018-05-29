@@ -1,4 +1,4 @@
-import store from './index'
+import store from '../index'
 
 describe('redux store', () => {
   it('should instantiate without error', () => {

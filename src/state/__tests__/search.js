@@ -1,4 +1,4 @@
-import search, { setStreet, setCity, setState, SET_STREET, SET_CITY, SET_STATE, FETCH_FROM_ZILLOW_PENDING, FETCH_FROM_ZILLOW_FULFILLED, FETCH_FROM_ZILLOW_REJECTED } from './search'
+import search, { setStreet, setCity, setState, SET_STREET, SET_CITY, SET_STATE, FETCH_FROM_ZILLOW_PENDING, FETCH_FROM_ZILLOW_FULFILLED, FETCH_FROM_ZILLOW_REJECTED } from '../search'
 
 describe('search actions', () => {
   it('should create an action to set street', () => {
