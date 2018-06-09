@@ -4,6 +4,8 @@ import axios from 'axios'
 export const SET_STREET = 'SET_STREET_ADDRESS'
 export const SET_CITY = 'SET_CITY'
 export const SET_STATE = 'SET_STATE'
+export const SET_ZIP = 'SET_ZIP'
+export const SET_INPUT_ERROR = 'SET_INPUT_ERROR'
 export const FETCH_FROM_ZILLOW = 'FETCH_FROM_ZILLOW'
 export const FETCH_FROM_ZILLOW_PENDING = 'FETCH_FROM_ZILLOW_PENDING'
 export const FETCH_FROM_ZILLOW_FULFILLED = 'FETCH_FROM_ZILLOW_FULFILLED'
@@ -14,12 +16,20 @@ const initialState = {
   address: {
     street: '',
     city: '',
-    state: ''
+    state: '',
+    zip: '',
+    complete: false
   },
-  zillowIsLoading: false,
-  zillowHasData: false,
-  zillowResponse: null,
-  zillowFetchError: false
+  inputError: {
+    inputError: false,
+    inputErrorMessage: ''
+  },
+  zillow: {
+    zillowIsLoading: false,
+    zillowHasData: false,
+    zillowResponse: null,
+    zillowFetchError: false
+  }
 }
 
 const search = (state = initialState, action) => {
@@ -48,23 +58,48 @@ const search = (state = initialState, action) => {
           state: action.payload.state
         }
       }
+    case SET_ZIP:
+      return {
+        ...state,
+        address: {
+          ...state.address,
+          zip: action.payload.zip
+        }
+      }
+    case SET_INPUT_ERROR:
+      return {
+        ...state,
+        inputError: {
+          inputError: true,
+          inputErrorMessage: action.payload.message
+        }
+      }
     case FETCH_FROM_ZILLOW_PENDING:
       return {
         ...state,
-        zillowIsLoading: true
+        zillow: {
+          ...state.zillow,
+          zillowIsLoading: true
+        }
       }
     case FETCH_FROM_ZILLOW_FULFILLED:
       return {
         ...state,
-        zillowIsLoading: false,
-        zillowHasData: true,
-        zillowResponse: action.payload.data
+        zillow: {
+          ...state.zillow,
+          zillowIsLoading: false,
+          zillowHasData: true,
+          zillowResponse: action.payload.data
+        }
       }
     case FETCH_FROM_ZILLOW_REJECTED:
       return {
         ...state,
-        zillowIsLoading: false,
-        zillowFetchError: true
+        zillow: {
+          ...state.zillow,
+          zillowIsLoading: false,
+          zillowFetchError: true
+        }
       }
     default:
       return state
@@ -99,12 +134,41 @@ export const setState = (state) => {
   }
 }
 
-// Side Effects
-export const fetchFromZillow = (street, city, state) => {
+export const setZip = (zip) => {
   return {
-    type: FETCH_FROM_ZILLOW,
-    payload: axios.get(`http://www.zillow.com/webservice/GetSearchResults?zws-id=12345&address=${street}&citystatezip=${city} ${state}`)
+    type: SET_ZIP,
+    payload: {
+      zip
+    }
   }
+}
+
+// Side Effects
+export const fetchFromZillow = (state) => {
+  const address = state.address
+  if (getAddressComplete(state)) {
+    const citystatezip = address.zip ? address.zip : address.city + ' ' + address.state
+    console.log(citystatezip)
+    const url = `https://zillow-proxy.herokuapp.com/zillow?street=${address.street}&citystatezip=${citystatezip}`
+    return {
+      type: FETCH_FROM_ZILLOW,
+      payload: axios.get(url)
+    }
+  } else {
+    return {
+      type: SET_INPUT_ERROR,
+      payload: {
+        message: 'Address is incomplete'
+      }
+    }
+  }
+}
+
+// Selectors
+
+export const getAddressComplete = (state) => {
+  const address = state.address
+  return address.street !== '' && (address.zip !== '' || (address.city !== '' && address.state !== ''))
 }
 
 export default search
