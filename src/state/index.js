@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import promiseMiddleware from 'redux-promise-middleware'
-import search from './search'
+import search from './reducers/search.reducer'
 import logger from 'redux-logger'
 
 const reducer = combineReducers({
