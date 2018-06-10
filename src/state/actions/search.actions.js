@@ -1,4 +1,4 @@
-import axios from 'axios'
+import zillowClient from '../clients/zillow.client'
 import * as searchActions from '../constants/search.constants'
 import { getAddressComplete } from '../selectors/address.selector'
 
@@ -42,11 +42,10 @@ export const fetchFromZillow = (state) => {
   const address = state.address
   if (getAddressComplete(state)) {
     const citystatezip = address.zip ? address.zip : address.city + ' ' + address.state
-    console.log(citystatezip)
-    const url = `https://zillow-proxy.herokuapp.com/zillow?street=${address.street}&citystatezip=${citystatezip}`
+    const url = `/zillow?street=${address.street}&citystatezip=${citystatezip}`
     return {
       type: searchActions.FETCH_FROM_ZILLOW,
-      payload: axios.get(url)
+      payload: zillowClient.get(url)
     }
   } else {
     return {

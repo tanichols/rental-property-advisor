@@ -112,6 +112,27 @@ describe('search reducer', () => {
       }
     })
   })
+  it('should handle SET_INPUT_ERROR', () => {
+    expect(search(undefined, { type: searchConstants.SET_INPUT_ERROR, payload: { message: 'Address is incomplete' } })).toEqual({
+      address: {
+        street: '',
+        city: '',
+        state: '',
+        zip: '',
+        complete: false
+      },
+      inputError: {
+        inputError: true,
+        inputErrorMessage: 'Address is incomplete'
+      },
+      zillow: {
+        zillowIsLoading: false,
+        zillowHasData: false,
+        zillowResponse: null,
+        zillowFetchError: false
+      }
+    })
+  })
   it('should handle FETCH_FROM_ZILLOW_PENDING', () => {
     expect(search(undefined, { type: searchConstants.FETCH_FROM_ZILLOW_PENDING })).toEqual({
       address: {
