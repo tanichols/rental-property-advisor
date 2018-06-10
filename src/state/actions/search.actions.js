@@ -1,6 +1,6 @@
 import axios from 'axios'
 import * as searchActions from '../constants/search.constants'
-import { getAddressComplete } from '../reducers/search.reducer'
+import { getAddressComplete } from '../selectors/address.selector'
 
 export const setStreet = (street) => {
   return {
