@@ -1,17 +1,20 @@
 import { connect } from 'react-redux'
-import Search from './Search'
 import * as searchActions from '../../state/actions/search.actions'
+import * as zillowActions from '../../state/actions/zillow.actions'
+import Search from './Search'
+import { isCompleteSelector } from '../../state/selectors/search.selectors'
 
-const MapStateToProps = (state) => {
+const MapStateToProps = state => {
   return {
-    address: state.search.address
+    search: state.search,
+    isComplete: isCompleteSelector(state)
   }
 }
 
 const MapDispatchToProps = (dispatch) => {
   return {
     onStreetChange: (street) => {
-      dispatch(searchActions.setStreet(street))
+      dispatch(searchActions.setStreetAddress(street))
     },
     onCityChange: (city) => {
       dispatch(searchActions.setCity(city))
@@ -22,8 +25,8 @@ const MapDispatchToProps = (dispatch) => {
     onZipChange: (zip) => {
       dispatch(searchActions.setZip(zip))
     },
-    onClick: (address) => {
-      dispatch(searchActions.fetchFromZillow(address))
+    onSubmit: () => {
+      dispatch(zillowActions.fetchFromZillow())
     }
   }
 }

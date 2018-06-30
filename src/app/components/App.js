@@ -1,16 +1,34 @@
+import { CssBaseline, Grid } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
 import React from 'react'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Header from './header'
+import Header from './Header'
 import SearchContainer from './SearchContainer'
 
-const App = () => (
+const styles = theme => ({
+  root: {
+    flexGrow: 1
+  }
+})
+
+const App = ({ classes }) => (
   <React.Fragment>
     <CssBaseline />
-    <Header />
-    <SearchContainer />
-    {/* <ZillowContainer />
-    <ErrorContainer /> */}
-  </React.Fragment>
+    <Grid container className={classes.root} spacing={16}>
+      <Header title="Rental Property Advisor" />
+      <Grid item xs={12}>
+        <Grid container className={classes.demo} justify="center" spacing={16}>
+          <Grid item>
+            <SearchContainer />
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
+  </React.Fragment >
 )
 
-export default App
+App.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(App)

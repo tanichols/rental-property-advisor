@@ -1,9 +1,12 @@
-import { Button, TextField } from '@material-ui/core'
+import { Button, Paper, TextField, Typography } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 const styles = (theme) => ({
+  button: {
+    margin: theme.spacing.unit
+  },
   container: {
     display: 'flex',
     flexWrap: 'wrap'
@@ -13,11 +16,11 @@ const styles = (theme) => ({
     marginRight: theme.spacing.unit,
     width: 200
   },
-  menu: {
-    width: 200
-  },
-  button: {
-    margin: theme.spacing.unit
+  root: {
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit * 2
   }
 })
 
@@ -49,64 +52,75 @@ class Search extends React.Component {
   }
 
   handleOnClick(event) {
-    this.props.onClick(this.props.address)
+    this.props.onSubmit()
   }
 
   render() {
+    const { classes, search, isComplete } = this.props
+
     return (
-      <form className={this.props.classes.container} noValidate autoComplete="off">
-        <TextField
-          id="street"
-          label="Street"
-          value={this.props.address.street}
-          onInput={this.handleStreetChange}
-          className={this.props.classes.textField}
-          margin="normal"
-        />
-        <TextField
-          id="city"
-          label="City"
-          value={this.props.address.city}
-          onInput={this.handleCityChange}
-          className={this.props.classes.textField}
-          margin="normal"
-        />
-        <TextField
-          id="state"
-          label="State"
-          value={this.props.address.state}
-          onInput={this.handleStateChange}
-          className={this.props.classes.textField}
-          margin="normal"
-        />
-        <TextField
-          id="zip"
-          label="Zip Code"
-          value={this.props.address.zip}
-          onInput={this.handleZipChange}
-          className={this.props.classes.textField}
-          margin="normal"
-        />
-        <Button
-          variant="contained"
-          onClick={this.handleOnClick}
-          className={this.props.classes.button}
-        >
-          Submit
-        </Button>
-      </form >
+      <div>
+        <Paper className={classes.root} elevation={1}>
+          <Typography variant="headline" component="h3">
+            Enter the address of the property in question
+          </Typography>
+          <form className={classes.container} noValidate autoComplete="off">
+            <TextField
+              id="street"
+              label="Street"
+              value={search.street}
+              onInput={this.handleStreetChange}
+              className={classes.textField}
+              margin="normal"
+            />
+            <TextField
+              id="city"
+              label="City"
+              value={search.city}
+              onInput={this.handleCityChange}
+              className={classes.textField}
+              margin="normal"
+            />
+            <TextField
+              id="state"
+              label="State"
+              value={search.state}
+              onInput={this.handleStateChange}
+              className={classes.textField}
+              margin="normal"
+            />
+            <TextField
+              id="zip"
+              label="Zip Code"
+              value={search.zip}
+              onInput={this.handleZipChange}
+              className={classes.textField}
+              margin="normal"
+            />
+            <Button
+              variant="contained"
+              onClick={this.handleOnClick}
+              disabled={!isComplete}
+              className={classes.button}
+            >
+              Submit
+            </Button>
+          </form >
+        </Paper>
+      </div>
     )
   }
 }
 
 Search.propTypes = {
-  address: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  onStreetChange: PropTypes.func.isRequired,
+  isComplete: PropTypes.bool.isRequired,
   onCityChange: PropTypes.func.isRequired,
   onStateChange: PropTypes.func.isRequired,
+  onStreetChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
   onZipChange: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired
+  search: PropTypes.object.isRequired
 }
 
 export default withStyles(styles)(Search)
