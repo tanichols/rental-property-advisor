@@ -8,7 +8,7 @@ const MapStateToProps = (state) => {
   }
 }
 
-const MapDispatchToProps = dispatch => {
+const MapDispatchToProps = (dispatch) => {
   return {
     onStreetChange: (street) => {
       dispatch(searchActions.setStreet(street))
@@ -21,6 +21,9 @@ const MapDispatchToProps = dispatch => {
     },
     onZipChange: (zip) => {
       dispatch(searchActions.setZip(zip))
+    },
+    onClick: (address) => {
+      dispatch(searchActions.fetchFromZillow(address))
     }
   }
 }

@@ -1,0 +1,2 @@
+export const SET_MORTGAGE = 'SET_MORTGAGE'
+export const SET_EXPENSES = 'SET_EXPENSES'

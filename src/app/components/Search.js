@@ -1,9 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { TextField } from '@material-ui/core'
+import { Button, TextField } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-const styles = theme => ({
+const styles = (theme) => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap'
@@ -15,6 +15,9 @@ const styles = theme => ({
   },
   menu: {
     width: 200
+  },
+  button: {
+    margin: theme.spacing.unit
   }
 })
 
@@ -26,6 +29,7 @@ class Search extends React.Component {
     this.handleCityChange = this.handleCityChange.bind(this)
     this.handleStateChange = this.handleStateChange.bind(this)
     this.handleZipChange = this.handleZipChange.bind(this)
+    this.handleOnClick = this.handleOnClick.bind(this)
   }
 
   handleStreetChange(event) {
@@ -44,9 +48,13 @@ class Search extends React.Component {
     this.props.onZipChange(event.target.value)
   }
 
+  handleOnClick(event) {
+    this.props.onClick(this.props.address)
+  }
+
   render() {
     return (
-      <form action="">
+      <form className={this.props.classes.container} noValidate autoComplete="off">
         <TextField
           id="street"
           label="Street"
@@ -79,7 +87,14 @@ class Search extends React.Component {
           className={this.props.classes.textField}
           margin="normal"
         />
-      </form>
+        <Button
+          variant="contained"
+          onClick={this.handleOnClick}
+          className={this.props.classes.button}
+        >
+          Submit
+        </Button>
+      </form >
     )
   }
 }
@@ -90,7 +105,8 @@ Search.propTypes = {
   onStreetChange: PropTypes.func.isRequired,
   onCityChange: PropTypes.func.isRequired,
   onStateChange: PropTypes.func.isRequired,
-  onZipChange: PropTypes.func.isRequired
+  onZipChange: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(Search)

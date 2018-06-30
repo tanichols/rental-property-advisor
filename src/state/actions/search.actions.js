@@ -1,12 +1,10 @@
-import zillowClient from '../clients/zillow.client'
 import * as searchActions from '../constants/search.constants'
-import { getAddressComplete } from '../selectors/address.selector'
 
-export const setStreet = (street) => {
+export const setStreetAddress = (streetAddress) => {
   return {
-    type: searchActions.SET_STREET,
+    type: searchActions.SET_STREET_ADDRESS,
     payload: {
-      street
+      streetAddress
     }
   }
 }
@@ -34,25 +32,6 @@ export const setZip = (zip) => {
     type: searchActions.SET_ZIP,
     payload: {
       zip
-    }
-  }
-}
-
-export const fetchFromZillow = (state) => {
-  const address = state.address
-  if (getAddressComplete(state)) {
-    const citystatezip = address.zip ? address.zip : address.city + ' ' + address.state
-    const url = `/zillow?street=${address.street}&citystatezip=${citystatezip}`
-    return {
-      type: searchActions.FETCH_FROM_ZILLOW,
-      payload: zillowClient.get(url)
-    }
-  } else {
-    return {
-      type: searchActions.SET_INPUT_ERROR,
-      payload: {
-        message: 'Address is incomplete'
-      }
     }
   }
 }
