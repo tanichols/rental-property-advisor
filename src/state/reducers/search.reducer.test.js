@@ -11,39 +11,39 @@ describe('search reducer', () => {
     })
   })
   it('should handle SET_STREET', () => {
-    const streetAddress = '1315 SW 2nd Ave'
-    expect(search(undefined, searchActions.setStreetAddress(streetAddress))).toEqual({
-      streetAddress: streetAddress,
+    const expectedStreetAddress = '1315 SW 2nd Ave'
+    expect(search(undefined, searchActions.setStreetAddress(expectedStreetAddress))).toEqual({
+      streetAddress: expectedStreetAddress,
       city: '',
       state: '',
       zip: ''
     })
   })
   it('should handle SET_CITY', () => {
-    const city = 'Battle Ground'
-    expect(search(undefined, searchActions.setCity(city))).toEqual({
+    const ExpectedCity = 'Battle Ground'
+    expect(search(undefined, searchActions.setCity(ExpectedCity))).toEqual({
       streetAddress: '',
-      city: city,
+      city: ExpectedCity,
       state: '',
       zip: ''
     })
   })
   it('should handle SET_STATE', () => {
-    const state = 'WA'
-    expect(search(undefined, searchActions.setState(state))).toEqual({
+    const expectedState = 'WA'
+    expect(search(undefined, searchActions.setState(expectedState))).toEqual({
       streetAddress: '',
       city: '',
-      state: state,
+      state: expectedState,
       zip: ''
     })
   })
   it('should handle SET_ZIP', () => {
-    const zip = '98604'
-    expect(search(undefined, searchActions.setZip(zip))).toEqual({
+    const expectedZip = '98604'
+    expect(search(undefined, searchActions.setZip(expectedZip))).toEqual({
       streetAddress: '',
       city: '',
       state: '',
-      zip: zip
+      zip: expectedZip
     })
   })
 })
