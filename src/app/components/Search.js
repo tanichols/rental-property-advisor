@@ -60,7 +60,7 @@ class Search extends React.Component {
 
     return (
       <div>
-        <Paper className={classes.root} elevation={1}>
+        <Paper className={classes.root} elevation={2}>
           <Typography variant="headline" component="h3">
             Enter the address of the property in question
           </Typography>
