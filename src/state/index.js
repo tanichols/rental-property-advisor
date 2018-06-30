@@ -1,20 +1,20 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import promiseMiddleware from 'redux-promise-middleware'
 import search from './reducers/search.reducer'
-import logger from 'redux-logger'
 
 const reducer = combineReducers({
   search
 })
 
-const middleware = applyMiddleware(
-  promiseMiddleware(),
-  logger
-)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const store = createStore(
   reducer,
-  middleware
+  composeEnhancers(
+    applyMiddleware(
+      promiseMiddleware()
+    )
+  )
 )
 
 export default store

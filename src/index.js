@@ -3,15 +3,13 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import store from './state'
 import registerServiceWorker from './registerServiceWorker'
-import * as searchActions from './state/actions/search.actions'
-
-store.dispatch(searchActions.setState('WA'))
+import App from './app/components/App'
 
 ReactDOM.render(
   <Provider store={store}>
-    <div>
-      <h1>Render App Here</h1>
-    </div>
+    <App />
   </Provider>,
-  document.getElementById('root'))
+  document.getElementById('root')
+)
+
 registerServiceWorker()

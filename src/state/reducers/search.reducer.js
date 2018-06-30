@@ -5,8 +5,7 @@ const initialState = {
     street: '',
     city: '',
     state: '',
-    zip: '',
-    complete: false
+    zip: ''
   },
   inputError: {
     inputError: false,

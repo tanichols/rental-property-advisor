@@ -9,8 +9,7 @@ describe('search reducer', () => {
         street: '',
         city: '',
         state: '',
-        zip: '',
-        complete: false
+        zip: ''
       },
       inputError: {
         inputError: false,
@@ -31,8 +30,7 @@ describe('search reducer', () => {
         street: street,
         city: '',
         state: '',
-        zip: '',
-        complete: false
+        zip: ''
       },
       inputError: {
         inputError: false,
@@ -53,8 +51,7 @@ describe('search reducer', () => {
         street: '',
         city: city,
         state: '',
-        zip: '',
-        complete: false
+        zip: ''
       },
       inputError: {
         inputError: false,
@@ -75,8 +72,7 @@ describe('search reducer', () => {
         street: '',
         city: '',
         state: state,
-        zip: '',
-        complete: false
+        zip: ''
       },
       inputError: {
         inputError: false,
@@ -97,8 +93,7 @@ describe('search reducer', () => {
         street: '',
         city: '',
         state: '',
-        zip: zip,
-        complete: false
+        zip: zip
       },
       inputError: {
         inputError: false,
@@ -118,8 +113,7 @@ describe('search reducer', () => {
         street: '',
         city: '',
         state: '',
-        zip: '',
-        complete: false
+        zip: ''
       },
       inputError: {
         inputError: true,
@@ -139,8 +133,7 @@ describe('search reducer', () => {
         street: '',
         city: '',
         state: '',
-        zip: '',
-        complete: false
+        zip: ''
       },
       inputError: {
         inputError: false,
@@ -163,8 +156,7 @@ describe('search reducer', () => {
         street: '',
         city: '',
         state: '',
-        zip: '',
-        complete: false
+        zip: ''
       },
       inputError: {
         inputError: false,
@@ -184,8 +176,7 @@ describe('search reducer', () => {
         street: '',
         city: '',
         state: '',
-        zip: '',
-        complete: false
+        zip: ''
       },
       inputError: {
         inputError: false,
