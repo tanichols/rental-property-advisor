@@ -11,3 +11,18 @@ export const isLoadingSelector = createSelector(
   zillowSelector,
   zillow => zillow.isLoading
 )
+
+export const yearBuiltSelector = createSelector(
+  zillowSelector,
+  zillow => zillow.response.yearBuilt
+)
+
+export const zestimateSelector = createSelector(
+  zillowSelector,
+  zillow => zillow.response.zestimate
+)
+
+export const rentZestimateSelector = createSelector(
+  zillowSelector,
+  zillow => zillow.response.rentZestimate
+)

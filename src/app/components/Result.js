@@ -1,4 +1,4 @@
-import { Paper, Typography } from '@material-ui/core'
+import { Paper, Typography, List, ListItem, ListItemText } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -21,13 +21,39 @@ const styles = (theme) => ({
   }
 })
 
-const Result = ({ showResult, classes }) => {
+const Result = ({ showResult, classes, zestimate, rentZestimate, minimumRent, maintenanceExpenses, potentialProfit }) => {
   return (
     <div>
       {showResult &&
         <Paper className={classes.root} elevation={1}>
           <Typography variant="headline">
-            Results:
+            <List>
+              <ListItem>
+                <ListItemText>
+                  Zestimate: {zestimate}
+                </ListItemText>
+              </ListItem>
+              <ListItem>
+                <ListItemText>
+                  Rent Estimate: {rentZestimate}
+                </ListItemText>
+              </ListItem>
+              <ListItem>
+                <ListItemText>
+                  Maintenance Expenses: {maintenanceExpenses}
+                </ListItemText>
+              </ListItem>
+              <ListItem>
+                <ListItemText>
+                  Minimum Rent: {minimumRent}
+                </ListItemText>
+              </ListItem>
+              <ListItem>
+                <ListItemText>
+                  Potential Profit: {potentialProfit}
+                </ListItemText>
+              </ListItem>
+            </List>
           </Typography>
         </Paper>
       }
@@ -37,7 +63,12 @@ const Result = ({ showResult, classes }) => {
 
 Result.propTypes = {
   classes: PropTypes.object.isRequired,
-  showResult: PropTypes.bool.isRequired
+  showResult: PropTypes.bool.isRequired,
+  zestimate: PropTypes.number.isRequired,
+  rentZestimate: PropTypes.number.isRequired,
+  minimumRent: PropTypes.number.isRequired,
+  potentialProfit: PropTypes.number.isRequired,
+  maintenanceExpenses: PropTypes.number.isRequired
 }
 
 export default withStyles(styles)(Result)

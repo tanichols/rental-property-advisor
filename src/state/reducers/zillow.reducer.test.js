@@ -7,10 +7,10 @@ describe('zillow reducer', () => {
       isLoading: false,
       hasData: false,
       response: {
-        zpid: null,
-        zestimate: null,
-        rentZestimate: null,
-        yearBuilt: null
+        zpid: 0,
+        zestimate: 0,
+        rentZestimate: 0,
+        yearBuilt: 2018
       },
       fetchError: false
     })
@@ -20,10 +20,10 @@ describe('zillow reducer', () => {
       isLoading: true,
       hasData: false,
       response: {
-        zpid: null,
-        zestimate: null,
-        rentZestimate: null,
-        yearBuilt: null
+        zpid: 0,
+        zestimate: 0,
+        rentZestimate: 0,
+        yearBuilt: 2018
       },
       fetchError: false
     })
@@ -47,10 +47,10 @@ describe('zillow reducer', () => {
       isLoading: false,
       hasData: false,
       response: {
-        zpid: null,
-        zestimate: null,
-        rentZestimate: null,
-        yearBuilt: null
+        zpid: 0,
+        zestimate: 0,
+        rentZestimate: 0,
+        yearBuilt: 2018
       },
       fetchError: true
     })

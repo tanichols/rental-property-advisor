@@ -31,11 +31,11 @@ class Mortgage extends React.Component {
   }
 
   handlePaymentChange(event) {
-    this.props.onPaymentChange(event.target.value)
+    this.props.onPaymentChange(parseFloat(event.target.value))
   }
 
   handleAdditionalExpensesChange(event) {
-    this.props.onAdditionalExpensesChange(event.target.value)
+    this.props.onAdditionalExpensesChange(parseFloat(event.target.value))
   }
 
   render() {
