@@ -14,9 +14,9 @@ const Header = (props) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="static">
         <Toolbar>
-          <Typography variant="title" color="inherit">
+          <Typography variant="title">
             {title}
           </Typography>
         </Toolbar>

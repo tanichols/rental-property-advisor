@@ -17,13 +17,15 @@ const zillow = (state = initialState, action) => {
     case zillowConstants.FETCH_FROM_ZILLOW_PENDING:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        fetchError: false
       }
     case zillowConstants.FETCH_FROM_ZILLOW_FULFILLED:
       return {
         ...state,
         isLoading: false,
         hasData: true,
+        fetchError: false,
         response: action.payload.data
       }
     case zillowConstants.FETCH_FROM_ZILLOW_REJECTED:

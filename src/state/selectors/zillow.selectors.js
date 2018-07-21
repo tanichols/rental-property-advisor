@@ -12,6 +12,11 @@ export const isLoadingSelector = createSelector(
   zillow => zillow.isLoading
 )
 
+export const isErrorSelector = createSelector(
+  zillowSelector,
+  zillow => zillow.fetchError
+)
+
 export const yearBuiltSelector = createSelector(
   zillowSelector,
   zillow => zillow.response.yearBuilt

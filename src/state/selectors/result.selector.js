@@ -11,11 +11,11 @@ export const maintenanceExpensesSelector = createSelector(
     if (year - yearBuilt < 5) {
       total = zestimate * 0.01
     } else if (year - yearBuilt < 10) {
-      total = zestimate * 0.025
+      total = zestimate * 0.02
     } else if (year - yearBuilt < 15) {
-      total = zestimate * 0.04
+      total = zestimate * 0.03
     } else {
-      total = zestimate * 0.05
+      total = zestimate * 0.04
     }
     return Math.round(total / 12)
   }
@@ -26,7 +26,6 @@ const subTotalSelector = createSelector(
   additionalExpensesSelector,
   maintenanceExpensesSelector,
   (payment, additionalExpenses, maintenanceExpenses) => {
-    console.log('PAYMENT', payment)
     return Math.round(payment + additionalExpenses + maintenanceExpenses)
   }
 )
@@ -34,7 +33,6 @@ const subTotalSelector = createSelector(
 export const minimumRentSelector = createSelector(
   subTotalSelector,
   subTotal => {
-    console.log('SUBTOTAL: ', subTotal)
     return Math.round(subTotal * 12 / 11)
   }
 )
@@ -43,4 +41,9 @@ export const potentialProfitSelector = createSelector(
   minimumRentSelector,
   rentZestimateSelector,
   (minimumRent, rentZestimate) => Math.round(rentZestimate - minimumRent)
+)
+
+export const isProfitableSelector = createSelector(
+  potentialProfitSelector,
+  (potentialProfit) => potentialProfit > 0
 )

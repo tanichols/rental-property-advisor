@@ -19,6 +19,13 @@ const styles = (theme) => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
     marginTop: theme.spacing.unit * 2
+  },
+  error: {
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit * 2,
+    color: theme.palette.primary
   }
 })
 
@@ -39,12 +46,19 @@ class Mortgage extends React.Component {
   }
 
   render() {
-    const { classes, mortgage, showMortgage, showSpinner } = this.props
+    const { classes, mortgage, showMortgage, showSpinner, showError } = this.props
 
     return (
       <div>
         {showSpinner &&
           <Spinner size={200} />
+        }
+        {showError &&
+          <Paper className={classes.error} elevation={1}>
+            <Typography variant="headline" component="h3" color="error">
+              Details could not be found for the requested property
+            </Typography>
+          </Paper>
         }
         {showMortgage &&
           <Paper className={classes.root} elevation={1}>
@@ -82,7 +96,8 @@ Mortgage.propTypes = {
   onPaymentChange: PropTypes.func.isRequired,
   onAdditionalExpensesChange: PropTypes.func.isRequired,
   showMortgage: PropTypes.bool.isRequired,
-  showSpinner: PropTypes.bool.isRequired
+  showSpinner: PropTypes.bool.isRequired,
+  showError: PropTypes.bool.isRequired
 }
 
 export default withStyles(styles)(Mortgage)

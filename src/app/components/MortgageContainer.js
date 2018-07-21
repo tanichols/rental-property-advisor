@@ -1,13 +1,14 @@
 import { connect } from 'react-redux'
 import * as mortgageActions from '../../state/actions/mortgage.actions'
 import Mortgage from './Mortgage'
-import { propertyFoundSelector, isLoadingSelector } from '../../state/selectors/zillow.selectors'
+import { propertyFoundSelector, isLoadingSelector, isErrorSelector } from '../../state/selectors/zillow.selectors'
 
 const MapStateToProps = state => {
   return {
     mortgage: state.mortgage,
     showMortgage: propertyFoundSelector(state),
-    showSpinner: isLoadingSelector(state)
+    showSpinner: isLoadingSelector(state),
+    showError: isErrorSelector(state)
   }
 }
 
