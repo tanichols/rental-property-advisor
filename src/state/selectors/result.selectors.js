@@ -7,21 +7,17 @@ export const maintenanceExpensesSelector = createSelector(
   zestimateSelector,
   (yearBuilt, zestimate) => {
     let total
-    const year = new Date().getYear()
-    if (year - yearBuilt < 5) {
+    const year = new Date().getFullYear()
+    if ((year - yearBuilt) < 10) {
       total = zestimate * 0.01
-    } else if (year - yearBuilt < 10) {
-      total = zestimate * 0.02
-    } else if (year - yearBuilt < 15) {
-      total = zestimate * 0.03
     } else {
-      total = zestimate * 0.04
+      total = zestimate * 0.02
     }
     return Math.round(total / 12)
   }
 )
 
-const subTotalSelector = createSelector(
+export const subTotalSelector = createSelector(
   paymentSelector,
   additionalExpensesSelector,
   maintenanceExpensesSelector,

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import Result from './Result'
 import { propertyFoundSelector, zestimateSelector, rentZestimateSelector } from '../../state/selectors/zillow.selectors'
-import { maintenanceExpensesSelector, minimumRentSelector, potentialProfitSelector, isProfitableSelector } from '../../state/selectors/result.selector'
+import { maintenanceExpensesSelector, minimumRentSelector, potentialProfitSelector, isProfitableSelector } from '../../state/selectors/result.selectors'
 
 const MapStateToProps = state => {
   return {
